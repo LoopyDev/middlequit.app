@@ -77,6 +77,10 @@ h2 { margin: 0; font: 400 clamp(1.6rem, 4vw, 2.3rem)/1.2 var(--display); text-wr
 .facts dt { font-weight: 600; }
 .facts dd { margin: 4px 0 0; color: var(--muted); }
 
+.install { border-top: 1px solid var(--line); }
+.steps { display: grid; gap: 14px; max-width: 62ch; margin: 28px 0 0; padding-left: 1.4em; }
+.steps li::marker { color: var(--red); font-weight: 600; }
+
 .close { padding-block: 0 72px; }
 .close .band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding: 28px; border-radius: 12px; background: linear-gradient(100deg, var(--red-deep), var(--red)); }
 .close h2 { font-size: clamp(1.35rem, 3.4vw, 1.9rem); }
@@ -103,7 +107,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: s
       <a class="button primary" href="https://loopydev.gumroad.com/l/rmmvgk">Get MiddleQuit</a>
       <a class="button quiet" href="https://github.com/LoopyDev/MiddleQuit">Source on GitHub</a>
     </div>
-    <p class="requires">For macOS 15.6 and later</p>
+    <p class="requires">For macOS 15.6 and later. <a href="#install">How to open it the first time</a></p>
   </div>
 </header>
 
@@ -167,6 +171,18 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: s
           <dd>The code is on GitHub under GPLv3, so you can read it or build it yourself. Buying gets you the ready-to-run app and supports the work.</dd>
         </div>
       </dl>
+    </div>
+  </section>
+  <section class="block install" id="install">
+    <div class="wrap">
+      <h2>Opening it the first time</h2>
+      <p class="lede">MiddleQuit isn't notarized by Apple yet, so macOS warns you when you first open it. The code is public if you'd like to read it first. You can get past the warning in a few steps:</p>
+      <ol class="steps">
+        <li>Move MiddleQuit to Applications and open it. When macOS warns you, press Done.</li>
+        <li>Open System Settings, then Privacy &amp; Security.</li>
+        <li>Scroll down to Security and press Open Anyway.</li>
+        <li>Confirm with your password or Touch ID, then allow Accessibility when MiddleQuit asks.</li>
+      </ol>
     </div>
   </section>
 </main>
