@@ -29,7 +29,6 @@
   --red-deep: #5a0806;
   --display: "Kdam Thmor Pro", "Arial Narrow", sans-serif;
   --body: "Albert Sans", -apple-system, "Helvetica Neue", sans-serif;
-  --tile: clamp(34px, 9.4vw, 58px);
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--ink); color: var(--text); font: 400 1.0625rem/1.6 var(--body); -webkit-font-smoothing: antialiased; }
@@ -57,15 +56,6 @@ section.block { padding-block: clamp(48px, 8vw, 84px); }
 h2 { margin: 0; font: 400 clamp(1.6rem, 4vw, 2.3rem)/1.2 var(--display); text-wrap: balance; }
 .lede { max-width: 60ch; margin: 12px 0 0; color: var(--muted); }
 
-.demo { display: grid; justify-items: center; gap: 18px; margin-top: 32px; padding: clamp(28px, 6vw, 52px) 12px; border-radius: 12px; background: var(--panel); }
-.dock { display: flex; align-items: flex-end; justify-content: center; min-height: calc(var(--tile) + 20px); padding: 10px; border: 1px solid #ffffff24; border-radius: 16px; background: #ffffff14; }
-.tile { flex: none; width: var(--tile); height: var(--tile); margin-inline: 3px; padding: 0; border: 0; border-radius: 22%; color: #fff; font: 400 calc(var(--tile) * .42)/1 var(--display); cursor: pointer; overflow: hidden; transition: width .28s ease, margin .28s ease, transform .22s ease, opacity .22s ease; }
-.tile:hover { transform: translateY(-5px); }
-.tile.gone { width: 0; margin-inline: 0; opacity: 0; transform: scale(.3); pointer-events: none; }
-.finder { background: linear-gradient(135deg, #5cc8ff, #1668e3); cursor: default; }
-.finder:hover { transform: none; }
-.status { min-height: 1.6em; margin: 0; color: var(--muted); text-align: center; }
-.reset { padding: 6px 14px; border: 1px solid var(--line); border-radius: 8px; background: none; color: inherit; font: inherit; font-size: .9375rem; cursor: pointer; }
 
 .ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
 .ways h3 { margin: 0; font: 400 1.3rem/1.25 var(--display); }
@@ -90,7 +80,8 @@ h2 { margin: 0; font: 400 clamp(1.6rem, 4vw, 2.3rem)/1.2 var(--display); text-wr
 .close h2 { font-size: clamp(1.35rem, 3.4vw, 1.9rem); }
 .close .button.primary { background: #fff; color: #17060a; }
 footer { padding-block: 0 40px; color: var(--muted); font-size: .9375rem; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; justify-content: space-between; }
+footer img { display: block; width: 244px; max-width: 100%; height: auto; }
 
 @media (max-width: 760px) {
   .ways, .facts { grid-template-columns: minmax(0, 1fr); gap: 22px; }
@@ -125,12 +116,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: s
   <section class="block" id="try">
     <div class="wrap">
       <h2>Cluttered dock fatigue?</h2>
-      <p class="lede">On a Mac, closing a window doesn't quit the app, so they pile up in your Dock. MiddleQuit lets you quit any of them right there. Try it on this Dock.</p>
-      <div class="demo">
-        <div class="dock" id="dock" aria-label="Example Dock"></div>
-        <p class="status" id="status" role="status">Click an app to quit it.</p>
-        <button class="reset" id="reset" type="button" hidden>Open them again</button>
-      </div>
+      <p class="lede">On a Mac, closing a window doesn't quit the app, so they pile up in your Dock. MiddleQuit lets you quit any of them right there.</p>
     </div>
   </section>
 
@@ -211,59 +197,13 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: s
 <footer>
   <div class="wrap">
     <span>MiddleQuit by LoopyDev</span>
+    <a href="https://alternativeto.net/software/middlequit/about/?utm_source=badge&amp;utm_medium=referral" target="_blank" rel="noopener">
+      <img src="https://alternativeto.net/static/badges/badge-compact-dark.svg" alt="MiddleQuit | AlternativeTo" width="244" height="83">
+    </a>
     <a href="https://github.com/LoopyDev/MiddleQuit">GitHub</a>
   </div>
 </footer>
 
-<script>
-(function () {
-  var apps = [
-    ["Mail", "#2f7bf6", "M"], ["Music", "#f0304f", "M"], ["Maps", "#35b36b", "M"], ["Notes", "#f2b632", "N"],
-    ["Photos", "#a55cf0", "P"], ["Chat", "#20bfa9", "C"], ["Browser", "#f27a2a", "B"], ["Slides", "#d6447c", "S"]
-  ];
-  var dock = document.getElementById("dock");
-  var status = document.getElementById("status");
-  var reset = document.getElementById("reset");
-
-  var finder = document.createElement("button");
-  finder.type = "button";
-  finder.className = "tile finder";
-  finder.textContent = "F";
-  finder.setAttribute("aria-label", "Finder, which stays open");
-  finder.addEventListener("click", function () { status.textContent = "Finder always stays."; });
-  dock.appendChild(finder);
-
-  function left() { return dock.querySelectorAll(".tile:not(.finder):not(.gone)").length; }
-
-  function quit(tile, name) {
-    if (tile.classList.contains("gone")) return;
-    tile.classList.add("gone");
-    tile.disabled = true;
-    var n = left();
-    status.textContent = n === 0 ? "All clear. That took seconds." : "Quit " + name + ". " + n + (n === 1 ? " app" : " apps") + " left.";
-    reset.hidden = false;
-  }
-
-  apps.forEach(function (app) {
-    var tile = document.createElement("button");
-    tile.type = "button";
-    tile.className = "tile";
-    tile.style.background = app[1];
-    tile.textContent = app[2];
-    tile.title = app[0];
-    tile.setAttribute("aria-label", "Quit " + app[0]);
-    tile.addEventListener("click", function () { quit(tile, app[0]); });
-    tile.addEventListener("auxclick", function (e) { if (e.button === 1) { e.preventDefault(); quit(tile, app[0]); } });
-    dock.appendChild(tile);
-  });
-
-  reset.addEventListener("click", function () {
-    dock.querySelectorAll(".gone").forEach(function (t) { t.classList.remove("gone"); t.disabled = false; });
-    reset.hidden = true;
-    status.textContent = "Click an app to quit it.";
-  });
-})();
-</script>
 
 </body>
 </html>
