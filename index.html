@@ -13,28 +13,9 @@
 <link rel="icon" type="image/png" href="icon-64.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>MiddleQuit</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Albert+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
 <style>
 /* Layout: the film's last frame made into a page. Black above, a red surface below, and the product sitting on the horizon. */
-:root {
-  color-scheme: dark;
-  --ink: #03030a;
-  --panel: #101016;
-  --line: #2a2a33;
-  --text: #f4f3f1;
-  --muted: #a9a8b0;
-  --red: #ee2b1c;
-  --red-deep: #5a0806;
-  --display: "Kdam Thmor Pro", "Arial Narrow", sans-serif;
-  --body: "Albert Sans", -apple-system, "Helvetica Neue", sans-serif;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ink); color: var(--text); font: 400 1.0625rem/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-a { color: inherit; }
-:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.wrap { width: min(100%, 1040px); margin-inline: auto; padding-inline: 20px; }
 
 .hero { padding-block: clamp(48px, 9vw, 96px) 0; text-align: center; }
 .logo { display: block; width: min(100%, 640px); margin-inline: auto; color: #fff; }
@@ -79,9 +60,6 @@ h2 { margin: 0; font: 400 clamp(1.6rem, 4vw, 2.3rem)/1.2 var(--display); text-wr
 .close .band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding: 28px; border-radius: 12px; background: linear-gradient(100deg, var(--red-deep), var(--red)); }
 .close h2 { font-size: clamp(1.35rem, 3.4vw, 1.9rem); }
 .close .button.primary { background: #fff; color: #17060a; }
-footer { padding-block: 0 40px; color: var(--muted); font-size: .9375rem; }
-footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; justify-content: space-between; }
-footer img { display: block; width: 406px; max-width: 100%; height: auto; }
 
 @media (max-width: 760px) {
   .ways, .facts { grid-template-columns: minmax(0, 1fr); gap: 22px; }
@@ -196,11 +174,17 @@ footer img { display: block; width: 406px; max-width: 100%; height: auto; }
 
 <footer>
   <div class="wrap">
-    <span>MiddleQuit by LoopyDev</span>
+    <p class="maker">MiddleQuit is made by Mat Trocha (LoopyDev) in the UK. Questions or problems: <a href="mailto:support@middlequit.app">support@middlequit.app</a></p>
+    <nav aria-label="More">
+      <a href="https://loopydev.co.uk">Portfolio</a>
+      <a href="https://www.linkedin.com/in/loopydev/">LinkedIn</a>
+      <a href="https://github.com/LoopyDev/MiddleQuit">GitHub</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
     <a href="https://alternativeto.net/software/middlequit/about/?utm_source=badge&amp;utm_medium=referral" target="_blank" rel="noopener">
-      <img src="https://alternativeto.net/static/badges/badge-wide-dark.svg" alt="MiddleQuit | AlternativeTo" width="406" height="77">
+      <img src="badge-wide-dark.svg" alt="MiddleQuit | AlternativeTo" width="406" height="77">
     </a>
-    <a href="https://github.com/LoopyDev/MiddleQuit">GitHub</a>
   </div>
 </footer>
 
