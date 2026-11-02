@@ -72,6 +72,10 @@ h2 { margin: 0; font: 400 clamp(1.6rem, 4vw, 2.3rem)/1.2 var(--display); text-wr
 .ways p { margin: 8px 0 0; color: var(--muted); }
 .ways kbd { font: inherit; color: var(--text); }
 
+.shot { margin: 36px 0 0; }
+.shot img { display: block; width: 100%; height: auto; border-radius: 12px; }
+.shot figcaption { margin-top: 10px; color: var(--muted); font-size: .9375rem; }
+
 .trust { border-top: 1px solid var(--line); }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 44px; margin: 32px 0 0; }
 .facts dt { font-weight: 600; }
@@ -147,6 +151,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: s
           <p>Turn on one setting and a three-finger tap becomes a middle click in every app, so links open in new tabs and tabs close.</p>
         </div>
       </div>
+      <figure class="shot">
+        <img src="screens.jpg" width="1644" height="842" loading="lazy" alt="MiddleQuit's Settings window, with options for the menu bar icon, launch at login, three-finger tap and the clicks for Quit and Force Quit, next to the welcome guide showing how to tap with three fingers.">
+        <figcaption>Settings, and the short guide you see the first time you open it.</figcaption>
+      </figure>
     </div>
   </section>
 
